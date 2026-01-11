@@ -3,135 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pablosiu</title>
+    <title>Pablosiu - Home</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700&display=swap');
+        /* Nowoczesny font Outfit z większym zakresem wag */
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
         }
 
         body {
-            background-color: #fbfbfd; /* Kolor tła Apple */
-            color: #1d1d1f;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            background: #060608; /* Nieco głębsza czerń */
+            color: white;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
+        }
+
+        /* --- ANIMOWANE TŁO (Ulepszone) --- */
+        .bg-animate {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #0f172a 0%, #060608 100%);
+        }
+
+        .blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            filter: blur(80px);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.3; /* Subtelniejsza przezroczystość */
+            animation: move 20s infinite alternate ease-in-out;
+        }
+
+        .blob-2 {
+            background: linear-gradient(135deg, #3b82f6 0%, #2dd4bf 100%);
+            right: -5%;
+            bottom: -5%;
+            animation: move 15s infinite alternate-reverse ease-in-out;
+        }
+
+        @keyframes move {
+            from { transform: translate(-50px, -50px) scale(1) rotate(0deg); }
+            to { transform: translate(100px, 100px) scale(1.2) rotate(45deg); }
+        }
+
+        /* --- GŁÓWNY KONTENER (Glassmorphism 2.0) --- */
+        .glass-container {
+            max-width: 700px;
+            width: 90%;
+            padding: 60px 40px;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            position: relative;
             overflow: hidden;
         }
 
-        /* Bardzo subtelne, niemal niewidoczne koło w tle */
-        .bg-gradient {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80vw;
-            height: 80vw;
-            background: radial-gradient(circle, rgba(0, 102, 204, 0.03) 0%, transparent 70%);
-            z-index: -1;
-        }
-
-        .container {
-            text-align: center;
-            padding: 20px;
+        /* Efekt błysku na kontenerze */
+        .glass-container::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
         }
 
         h1 {
-            font-size: clamp(3rem, 10vw, 6rem);
-            font-weight: 700;
-            letter-spacing: -0.04em;
-            margin-bottom: 10px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.8s ease-out forwards;
+            font-size: 4.5rem;
+            font-weight: 800;
+            background: linear-gradient(to bottom, #ffffff 40%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            letter-spacing: -3px;
         }
 
         p {
-            font-size: 1.25rem;
-            color: #86868b;
-            font-weight: 400;
+            color: #94a3b8;
+            font-size: 1.2rem;
+            line-height: 1.6;
             max-width: 500px;
             margin: 0 auto 40px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.8s ease-out 0.2s forwards;
+            font-weight: 300;
         }
 
-        .cta-container {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.8s ease-out 0.4s forwards;
-        }
-
-        .btn {
+        /* --- PRZYCISK (Większa głębia) --- */
+        .cta-button {
+            display: inline-block;
+            padding: 18px 45px;
+            background: #fff;
+            color: #000;
             text-decoration: none;
-            padding: 14px 32px;
-            border-radius: 40px;
-            font-size: 1rem;
-            font-weight: 400;
-            transition: all 0.3s ease;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
         }
 
-        .btn-main {
-            background: #0071e3; /* Niebieski Apple */
-            color: white;
+        .cta-button:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2);
+            background: #f8fafc;
         }
 
-        .btn-main:hover {
-            background: #0077ed;
-            transform: scale(1.02);
+        /* Dodatkowy link pod przyciskiem dla balansu */
+        .secondary-link {
+            display: block;
+            margin-top: 25px;
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
         }
 
-        .btn-secondary {
-            background: transparent;
-            color: #0066cc;
+        .secondary-link:hover {
+            color: #fff;
         }
 
-        .btn-secondary:hover {
-            text-decoration: underline;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Pasek na dole */
-        .footer-note {
-            position: absolute;
-            bottom: 40px;
-            font-size: 0.8rem;
-            color: #a1a1a6;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
     </style>
 </head>
 <body>
 
-    <div class="bg-gradient"></div>
+    <div class="bg-animate">
+        <div class="blob"></div>
+        <div class="blob-2"></div>
+    </div>
 
-    <main class="container">
-        <h1>Pablosiu.</h1>
-        <p>Tworzę proste rzeczy, które rozwiązują skomplikowane problemy.</p>
+    <div class="glass-container">
+        <h1>Pablosiu</h1>
+        <p>To nie jest zwykła strona. To gówno, gdzie znajdziesz moje dzieła.</p>
         
-        <div class="cta-container">
-            <a href="projekty.html" class="btn btn-main">Zobacz projekty</a>
-            <a href="https://itspablosiu.github.io/bio/" class="btn btn-secondary">Dowiedz się więcej &gt;</a>
-        </div>
-    </main>
-
-    <div class="footer-note">Designed for simplicity</div>
+        <a href="projekty.html" class="cta-button">Zobacz moje projekty</a>
+        
+        <a href="https://itspablosiu.github.io/bio/" class="secondary-link">Przejdź do Bio Link →</a>
+    </div>
 
 </body>
 </html>
