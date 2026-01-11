@@ -3,184 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pablosiu - OS</title>
+    <title>Pablosiu</title>
     <style>
-        /* Import fontu technicznego */
-        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700&display=swap');
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: crosshair; /* Zmieniony kursor na celownik */
         }
 
         body {
-            background: #000;
-            color: #0f0; /* Klasyczny kolor terminala */
-            font-family: 'Space Mono', monospace;
-            height: 100vh;
-            overflow: hidden;
+            background-color: #fbfbfd; /* Kolor tła Apple */
+            color: #1d1d1f;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
         }
 
-        /* --- EFEKT SCANLINE (linie jak w starym monitorze) --- */
-        body::before {
-            content: " ";
+        /* Bardzo subtelne, niemal niewidoczne koło w tle */
+        .bg-gradient {
             position: fixed;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            z-index: 100;
-            background-size: 100% 2px, 3px 100%;
-            pointer-events: none;
-        }
-
-        /* --- CYFROWY SZUM W TLE --- */
-        .noise {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://media.giphy.com/media/oEI9uWUicG7BK/giphy.gif'); /* Delikatny szum */
-            opacity: 0.03;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vw;
+            background: radial-gradient(circle, rgba(0, 102, 204, 0.03) 0%, transparent 70%);
             z-index: -1;
-            pointer-events: none;
         }
 
-        /* --- GLÓWNY KONTENER --- */
-        .terminal-window {
-            width: 90%;
-            max-width: 900px;
-            padding: 40px;
-            border: 1px solid #0f0;
-            position: relative;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
-        }
-
-        .terminal-header {
-            position: absolute;
-            top: -12px;
-            left: 20px;
-            background: #000;
-            padding: 0 10px;
-            font-size: 0.8rem;
-            text-transform: uppercase;
+        .container {
+            text-align: center;
+            padding: 20px;
         }
 
         h1 {
-            font-size: clamp(2rem, 10vw, 5rem);
-            text-transform: uppercase;
-            line-height: 1;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px #f0f, -2px -2px #0ff; /* Efekt aberracji chromatycznej */
-            animation: glitch 3s infinite;
-        }
-
-        @keyframes glitch {
-            0% { text-shadow: 2px 2px #f0f, -2px -2px #0ff; }
-            2% { text-shadow: -5px 2px #f0f, 3px -2px #0ff; }
-            4% { text-shadow: 2px -5px #f0f, -2px 3px #0ff; }
-            6% { text-shadow: 2px 2px #f0f, -2px -2px #0ff; }
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease-out forwards;
         }
 
         p {
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin-bottom: 40px;
-            border-right: 2px solid #0f0;
-            width: fit-content;
-            white-space: nowrap;
-            overflow: hidden;
-            animation: typing 3s steps(40) forwards, blink 0.8s infinite;
-        }
-
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        @keyframes blink {
-            50% { border-color: transparent; }
-        }
-
-        /* --- PRZYCISKI W STYLU "DATA BLOCKS" --- */
-        .nav-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .box-link {
-            display: block;
-            padding: 15px;
-            border: 1px solid #0f0;
-            color: #0f0;
-            text-decoration: none;
-            transition: 0.2s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .box-link:hover {
-            background: #0f0;
-            color: #000;
-            font-weight: bold;
-            box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
-        }
-
-        .box-link::after {
-            content: "[ACCESS]";
-            position: absolute;
-            right: 10px;
-            font-size: 0.7rem;
-            top: 50%;
-            transform: translateY(-50%);
+            font-size: 1.25rem;
+            color: #86868b;
+            font-weight: 400;
+            max-width: 500px;
+            margin: 0 auto 40px;
             opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease-out 0.2s forwards;
         }
 
-        .box-link:hover::after {
-            opacity: 1;
+        .cta-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease-out 0.4s forwards;
         }
 
-        /* Stopka danych */
-        .system-status {
+        .btn {
+            text-decoration: none;
+            padding: 14px 32px;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 400;
+            transition: all 0.3s ease;
+        }
+
+        .btn-main {
+            background: #0071e3; /* Niebieski Apple */
+            color: white;
+        }
+
+        .btn-main:hover {
+            background: #0077ed;
+            transform: scale(1.02);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #0066cc;
+        }
+
+        .btn-secondary:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Pasek na dole */
+        .footer-note {
             position: absolute;
-            bottom: 20px;
-            left: 20px;
-            font-size: 0.7rem;
-            color: rgba(0, 255, 0, 0.5);
+            bottom: 40px;
+            font-size: 0.8rem;
+            color: #a1a1a6;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
-
     </style>
 </head>
 <body>
 
-    <div class="noise"></div>
+    <div class="bg-gradient"></div>
 
-    <div class="terminal-window">
-        <div class="terminal-header">User-ID: Pablosiu-77</div>
+    <main class="container">
+        <h1>Pablosiu.</h1>
+        <p>Tworzę proste rzeczy, które rozwiązują skomplikowane problemy.</p>
         
-        <h1>System Override</h1>
-        <p>Wczytywanie bazy danych projektów...</p>
-
-        <div class="nav-links">
-            <a href="projekty.html" class="box-link">
-                [01] PROJEKTY.EXE
-            </a>
-            <a href="https://itspablosiu.github.io/bio/" class="box-link">
-                [02] BIO_DATA.DAT
-            </a>
-            <a href="#" class="box-link" style="opacity: 0.4;">
-                [03] ENCRYPTED.??
-            </a>
+        <div class="cta-container">
+            <a href="projekty.html" class="btn btn-main">Zobacz projekty</a>
+            <a href="https://itspablosiu.github.io/bio/" class="btn btn-secondary">Dowiedz się więcej &gt;</a>
         </div>
+    </main>
 
-        <div class="system-status">
-            LOC: 52.2297° N, 21.0122° E | STATUS: ONLINE | ENCRYPTION: ACTIVE
-        </div>
-    </div>
+    <div class="footer-note">Designed for simplicity</div>
 
 </body>
 </html>
