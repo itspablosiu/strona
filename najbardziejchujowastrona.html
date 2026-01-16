@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>!!! MOJA SUPER STRONA 2004 !!!</title>
+</head>
+<body bgcolor="#00FF00" text="#FF00FF" link="#0000FF" vlink="#800080">
+
+    <center>
+        <marquee scrollamount="20" behavior="alternate">
+            <h1><font face="Comic Sans MS">WITAJ NA NAJGORSZEJ STRONIE W INTERNECIE!!!!11</font></h1>
+        </marquee>
+
+        <hr size="10" color="red">
+
+        <p><b><font size="7" color="yellow" face="Impact">STRONA W BUDOWIE</font></b></p>
+        
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJueGZ3bmZ3bmZ3bmZ3bmZ3bmZ3bmZ3bmZ3bmZ3bmZ3bmZ3JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/3o7TKMGpx4YlSccS9G/giphy.gif" alt="Construction" width="200">
+
+        <br><br>
+
+        <table border="10" bordercolor="blue" bgcolor="white">
+            <tr>
+                <td><font color="black">Dlaczego ta strona jest zła?</font></td>
+                <td><font color="black">Odpowiedź</font></td>
+            </tr>
+            <tr>
+                <td>Pętla</td>
+                <td>Beep gra aż do szału</td>
+            </tr>
+            <tr>
+                <td>Design</td>
+                <td>Lata 90. płakały jak projektowały</td>
+            </tr>
+        </table>
+
+        <br>
+
+        <font face="Courier New" size="2">
+            Zlicznik odwiedzin: 00000069
+        </font>
+
+        <br><br>
+
+        <marquee direction="up" height="50" scrollamount="2">
+            Kliknij tutaj! -> <a href="#" onclick="startBeep()">Nigdzie Cię nie zabiorę</a>
+        </marquee>
+
+        <br>
+
+        <audio id="beepAudio" loop>
+            <source src="https://www.soundjay.com/buttons/beep-01a.mp3" type="audio/mpeg">
+        </audio>
+
+        <script>
+            function startBeep() {
+                var audio = document.getElementById('beepAudio');
+                audio.play();
+                alert('ZOSTAŁEŚ OSTRZEŻONY! TERAZ BĘDZIE PISZCZEĆ!');
+            }
+            // Kliknięcie w cokolwiek też odpala pisk (dla pewności)
+            document.body.onclick = function() {
+                document.getElementById('beepAudio').play();
+            };
+        </script>
+        
+        <p><i>Kontakt: admin@buziaczek.pl</i></p>
+
+    </center>
+
+    <div style="position: fixed; bottom: 0; width: 100%; background: black; color: white; text-align: center;">
+        Najlepiej oglądać w Internet Explorer 6.0 przy rozdzielczości 800x600
+    </div>
+
+</body>
+</html>
